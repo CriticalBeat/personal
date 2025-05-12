@@ -90,67 +90,49 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-800 text-white p-8 flex flex-col items-center gap-8 font-poppins">
-      <h1 className="text-4xl mb-6 text-shadow-md font-mono text-center">Munkhbayasgalan's Blackjack</h1>
+    <div className="min-h-screen w-full max-w-screen overflow-x-hidden bg-gray-800 text-white p-4 sm:p-8 flex flex-col items-center gap-6 font-poppins">
+      <h1 className="mt-12 text-3xl mb-4 text-shadow-md font-mono text-center">Munkhbayasgalan's blackjack</h1>
 
-      <button 
-        onClick={startGame} 
-        className="font-mono px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105"
-      >
+      <button onClick={startGame} className="font-mono px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105">
         New Game
       </button>
 
-      <div className="w-full max-w-4xl mt-8 flex justify-between flex-wrap gap-6">
-
-        <div className="w-full md:w-1/2 text-center">
+      <div className="w-full max-w-4xl mt-8 flex justify-between flex-wrap">
+        <div className="w-full md:w-1/2 text-center mb-6">
           <h2 className="text-xl font-mono mb-4">Player ({playerTotal})</h2>
-          <div className="flex justify-center gap-6 flex-wrap">
+          <div className="flex justify-center gap-4 flex-wrap w-full overflow-hidden">
             {playerCards.map((card) => (
-              <img 
-                key={card.code} 
-                src={card.image} 
-                alt={card.code} 
-                className="w-24 h-auto rounded-lg shadow-xl transform transition-transform duration-300 hover:scale-105" 
-              />
+              <img key={card.code} src={card.image} alt={card.code} className="w-24 max-w-full h-auto rounded-lg shadow-xl transform transition-transform duration-300 hover:scale-105" />
             ))}
           </div>
         </div>
 
-        {/* Dealer Cards Section */}
-        <div className="w-full md:w-1/2 text-center mt-8">
+        <div className="w-full md:w-1/2 text-center mb-6">
           <h2 className="text-xl font-mono mb-4">Dealer ({gameOver ? dealerTotal : "?"})</h2>
-          <div className="flex justify-center gap-6 flex-wrap">
+          <div className="flex justify-center gap-4 flex-wrap w-full overflow-hidden">
             {dealerCards.map((card, index) => (
               <img
                 key={card.code}
                 src={index === 1 && !gameOver ? "https://www.deckofcardsapi.com/static/img/back.png" : card.image}
                 alt={card.code}
-                className="w-24 h-auto rounded-lg shadow-xl transform transition-transform duration-300 hover:scale-105"
+                className="w-24 max-w-full h-auto rounded-lg shadow-xl transform transition-transform duration-300 hover:scale-105"
               />
             ))}
           </div>
         </div>
       </div>
 
-      {/* Hit and Stand Buttons */}
       {!gameOver && (
-        <div className="mt-6 flex gap-6 justify-center">
-          <button 
-            onClick={hit} 
-            className="font-mono px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105"
-          >
+        <div className="mt-6 flex gap-6 flex-wrap justify-center">
+          <button onClick={hit} className="font-mono px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105">
             Hit
           </button>
-          <button 
-            onClick={stand} 
-            className="font-mono px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105"
-          >
+          <button onClick={stand} className="font-mono px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105">
             Stand
           </button>
         </div>
       )}
 
-      {/* Game Status Message */}
       {message && <h2 className="text-2xl mt-6 font-semibold font-mono text-shadow-md text-center">{message}</h2>}
     </div>
   );
